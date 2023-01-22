@@ -113,8 +113,7 @@ export default function Home() {
               Deploy <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
+              Instantly your contact page with&nbsp;Vercel.
             </p>
           </a>
         </div>
