@@ -1,7 +1,10 @@
 import Head from "next/head";
+import Image from "next/image";
 import { Inter } from "@next/font/google";
 
-export default function Chefs() {
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Privacy() {
   return (
     <>
       <Head>
@@ -10,10 +13,9 @@ export default function Chefs() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold underline bg-red-500"> Hello World!</h1>
       <main>
         <div>
-          <h1>Will be chefs collection</h1>
+          <h1>Will be Privacy Policy</h1>
         </div>
       </main>
     </>
