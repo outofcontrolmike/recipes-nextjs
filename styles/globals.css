@@ -103,6 +103,11 @@ h2 {
 p {
   font-size: 16px;
 }
+button {
+  background-color: black;
+  outline: 4px dotted;
+  outline-color: rebeccapurple;
+}
 
 /* body {
   color: rgb(var(--foreground-rgb));
