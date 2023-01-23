@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 
@@ -130,10 +129,71 @@ export default function Home() {
             >
               Please List Directions Here....
             </textarea>
+            <hr></hr>
+            <br></br>
             <h1>
               If you'd like to be listed as a chef on our site, please fill out
               the form below.
             </h1>
+            <div>
+              <label htmlFor="chef_name">Your Name</label>
+              <input
+                type="text"
+                id="chef_name"
+                name="chef_name"
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="chef_biography">
+                A sentence to sell yourself
+              </label>
+              <input
+                type="text"
+                id="chef_biography"
+                name="chef_biography"
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="business_link">Portfolio or Business Link</label>
+              <input
+                type="text"
+                id="business_link"
+                name="business_link"
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="social_media">
+                Social media "example: https://www.instagram.com/explodingsnes/
+                "
+              </label>
+              <input
+                type="text"
+                id="social_media"
+                name="social_media"
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="chef_description">Your Description</label>
+              <textarea
+                id="chef_description"
+                name="chef_description"
+                rows={5}
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="chef_image">An professional image of you</label>
+              <input
+                type="text"
+                id="chef_image"
+                name="chef_image"
+                className="textDecoration: outline m-4"
+              />
+              <label htmlFor="chef_seo_keywords">
+                Seo Keywords for your page ("Chef in Springfield MO")
+              </label>
+              <input
+                type="text"
+                id="chef_seo_keywords"
+                name="chef_seo_keywords"
+                className="textDecoration: outline m-4"
+              />
+            </div>
+            {/* Maybe ask if they want any recipes to be featured? */}
             <hr></hr>
             <button type="submit" className="mt-10">
               Submit
