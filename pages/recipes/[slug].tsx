@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
+import styles from "../../styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,101 +15,46 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold underline bg-red-500"> Hello World!</h1>
       <main>
-        <div>
-          <p>
-            Get started by editing&nbsp;
-            <code>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+        <main className={styles.main}>
           <div>
             <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
+              src="/vercel.svg"
+              width="600"
+              height="1200"
+              alt="Recipe Image"
             />
+            <p>Servings: 4</p>
+            <p>Creator: little circle that links to author</p>
+            <br></br>
+            <label>Recipe Description:</label>
+            <p>
+              Lorem ipsum dolor sit amet. Ut doloribus voluptas ab numquam
+              tempora et sint asperiores nam omnis excepturi et nobis deleniti
+              qui accusamus cupiditate ad vitae exercitationem. Ut dolorem sint
+              ab nihil modi qui quibusdam dicta rem minima molestiae est cumque
+              dolorem ut aliquid odit a repellendus minima. 33 excepturi velit
+              id placeat accusamus est corrupti autem eum voluptate distinctio
+              ut nobis similique et esse magni ut omnis Quis? Qui dolor quidem
+              in inventore iure et itaque facilis ea quasi provident. Eum iusto
+              quidem sit molestias veniam non velit quasi aut commodi deleniti
+              ut accusamus quae. Qui ullam voluptate ut inventore eaque ea
+              veritatis pariatur? Et deleniti voluptatum ut voluptate modi aut
+              voluptatibus voluptas ut rerum libero. Sit aliquid voluptatem est
+              ipsam velit non maxime iste et quidem saepe id iusto deserunt eos
+              nihil vitae et totam sapiente.
+            </p>
+            <br></br>
+            <p>Recipe Name:</p>
+            <p>Prep Time:</p>
+            <p>Cook Time:</p>
+            <p>Total Time: </p>
+            <p>Ingredients: </p>
+            <p>Directions:</p>
+            <p>Created by: </p>
+            <p>Other Recipes like this: </p>
           </div>
-        </div>
-
-        <div>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Should be slug</p>
-          </a>
-        </div>
+        </main>
       </main>
     </>
   );
