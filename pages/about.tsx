@@ -1,11 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
+import { Baloo_Da_2, Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  // let d1 = new Date();
+  // let dateTogether = new Date("12/26/2016");
+  // if (typeof window !== "undefined") {
+  //   if (d1.getMonth() > dateTogether.getMonth()) {
+  //     alert(d1.getFullYear() - dateTogether.getFullYear());
+  //   } else {
+  //     alert(d1.getFullYear() - dateTogether.getFullYear() - 1);
+  //   }
+  // }
   return (
     <>
       <Head>
@@ -14,105 +23,45 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold underline bg-red-500"> Hello World!</h1>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Learn about Next&nbsp;quizzes!</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Instantly deploy your shit</p>
-          </a>
-        </div>
+        <h1>About Us</h1>
+        <Image
+          src="/aboutUs.jpg"
+          width="600"
+          height="1200"
+          alt="about My wife and I photo"
+        />
+        <h1 style={{ fontStyle: "italic" }}>Who We Are</h1>
+        <p>
+          We are Michael and Jessica Wilson as of March 13th, 2022. We have been
+          together since Christmas 2016, and have lived with each other since
+          the Fall of 2017.
+        </p>
+        <p>
+          As you can imagine, figuring out what to cook every night for almost a
+          decade can turn into a chore but we try to keep in mind that we should
+          be grateful that we both enjoy cooking and like to make different
+          recipes.{" "}
+        </p>
+        <p>
+          Personally, I was inspired to create some type of website for my wife
+          and I to use for reading our recipes. Luckily I learned about
+          Sanity.IO as a platform to use for uploading our recipes.
+        </p>
+        <p>
+          We've decided to also allow people to view our recipes as well as
+          contribute their own recipes to our site.
+        </p>
+        <h1 style={{ fontStyle: "italic" }}>What else we like to do</h1>
+        <p>
+          We enjoy traveling and hiking when time permits. One of the best
+          things about being able to travel is experiencing the different
+          cuisines that other geographical locations offer.
+        </p>
+        <p>
+          We also love exploring the local restaurants and craft breweries
+          around the 417 as well as partaking in festivals that seem feasible.
+        </p>
       </main>
     </>
   );

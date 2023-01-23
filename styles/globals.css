@@ -88,6 +88,20 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-size: medium;
+}
+h1 {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+h2 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
 }
 
 /* body {
