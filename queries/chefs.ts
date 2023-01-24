@@ -1,21 +1,22 @@
-import { sanityStaticProps } from 'lib/sanity';
+import client from "../client";
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-interface IRecipesData {
+interface IChefsData {
 	data?: {
 		title: string;
 	};
 }
 
-export const homeData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'chefs'][0] {
-    ...,
+export const chefsData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+	const query = groq`*[_type == 'author'] {
   }`;
 
-	const recipesData: IRecipesData = await sanityStaticProps({ context, query });
-	return recipesData;
+	const chefsData: IChefsData = await client.fetch(query);({ context, query });
+	return chefsData;
+
+    
 };
 
 interface IChefData {
@@ -25,9 +26,9 @@ interface IChefData {
 	};
 }
     //Chef Slug - probably similar to postData in Sanity
-    export const postData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+    export const chefData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
         const slug = context?.params?.slug;
-        const query = groq`*[_type == 'chefs' && slug.current == '${slug}'][0]{
+        const query = groq`*[_type == 'author' && slug.current == '${slug}'][0]{
             ...,
             'slug': slug.current,
             author->{
@@ -35,6 +36,6 @@ interface IChefData {
             },
         }`;
     
-        const chefData: IChefData = await sanityStaticProps({ context, query });
+        const chefData: IChefData = await client.fetch(query);({ context, query });
         return chefData;
     };

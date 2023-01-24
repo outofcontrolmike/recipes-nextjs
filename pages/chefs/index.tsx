@@ -1,7 +1,9 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
+import { useRouter } from "next/router";
 import chefCard from "../../components/chefCard";
 export default function Chefs() {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -12,6 +14,7 @@ export default function Chefs() {
       </Head>
       <main>
         <p>Will be the chefs collection</p>
+        <h1>{router.query.slug}</h1>
       </main>
     </>
   );

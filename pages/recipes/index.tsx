@@ -1,9 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { recipesData } from "../../queries/recipes";
 
-export default function Home() {
-  // get every recipe
+// getStaticProps
+export const getStaticProps: GetStaticProps = async (context) => {
+  const pageProps = await recipesData(context);
+
+  return {
+    props: {
+      page: pageProps?.data || null,
+    },
+  };
+};
+
+export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("data", data);
   return (
     <>
       <Head>
@@ -19,4 +30,4 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
