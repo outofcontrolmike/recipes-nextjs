@@ -12,6 +12,7 @@ export const getCategoryPaths = async () => {
 		},
 	}`;
 
+    //No wonder this doesnt work, client.fetch needs to be sanitystaticprops isn't real
 	const {categories} = await client.fetch(query).then((data) => data);
 	return categories;
 };
