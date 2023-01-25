@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("data", data?.page);
+  console.log("data", data);
   return (
     <>
       <Head>

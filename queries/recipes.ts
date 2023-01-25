@@ -1,20 +1,33 @@
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import client from '../client';
+import { sanityClient, sanityStaticProps } from '../lib/sanity';
+
+//Paths
+export const getCategoryPaths = async () => {
+	const client = sanityClient('authenticated');
+	const query = groq`*[_type == 'recipe'][0]{
+		recipe[]->{
+			'slug': slug.current,
+		},
+	}`;
+
+	const {categories} = await client.fetch(query).then((data) => data);
+	return categories;
+};
 
 interface IRecipesData {
 	data?: {
-		title: string;
+		name: string;
 	};
 }
 
 //Get all recipes
 export const recipesData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'recipe'] {
-  }`;
+	const query = groq`*[_type == 'recipe']`;
 
-  const recipesData: IRecipesData = await client.fetch(query);({ context, query });
+
+  const recipesData: IRecipesData = await sanityStaticProps({ context, query });
   return recipesData;
 };
 
@@ -26,7 +39,7 @@ interface IRecipeData {
 }
     export const recipeData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
         const slug = context?.params?.slug;
-        const query = groq`*[_type == 'recipes' && slug.current == '${slug}'][0]]{
+        const query = groq`*[_type == 'recipe' && slug.current == '${slug}']{
             ...,
             'slug': slug.current,
             author->{
@@ -34,7 +47,7 @@ interface IRecipeData {
             },
         }`;
 
-        const recipesData: IRecipeData = await client.fetch(query);({context, query});
+        const recipesData: IRecipeData = await sanityStaticProps({context, query});
         return recipesData;
     }
 

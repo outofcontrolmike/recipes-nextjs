@@ -2,21 +2,19 @@ import client from "../client";
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { sanityStaticProps } from "../lib/sanity";
 
 interface IChefsData {
 	data?: {
 		title: string;
 	};
 }
-
+//collection
 export const chefsData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'author'] {
-  }`;
+	const query = groq`*[_type == 'author']`;
 
-	const chefsData: IChefsData = await client.fetch(query);({ context, query });
+	const chefsData: IChefsData = await sanityStaticProps({ context, query });
 	return chefsData;
-
-    
 };
 
 interface IChefData {

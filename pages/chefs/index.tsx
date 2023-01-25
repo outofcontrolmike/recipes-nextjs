@@ -1,9 +1,19 @@
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import chefCard from "../../components/chefCard";
-export default function Chefs() {
-  const router = useRouter();
 
+import { chefsData } from "../../queries/chefs";
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const pageProps = await chefsData(context);
+
+  return {
+    props: {
+      page: pageProps?.data || null,
+    },
+  };
+};
+export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("data in chefs", data);
   return (
     <>
       <Head>
@@ -14,8 +24,10 @@ export default function Chefs() {
       </Head>
       <main>
         <p>Will be the chefs collection</p>
-        <h1>{router.query.slug}</h1>
+        <h1>Wohoo</h1>
       </main>
     </>
   );
-}
+};
+
+export default Page;
