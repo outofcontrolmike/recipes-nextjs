@@ -1,11 +1,40 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../../styles/Home.module.css";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+import { getCategoryPaths, recipeData } from "../../queries/recipes";
 
-export default function Home() {
+interface ISlug {
+  slug: string;
+}
+
+// getStaticPaths
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categoryPaths: ISlug[] = await getCategoryPaths();
+  const paths = categoryPaths?.map(({ slug }) => ({
+    params: { slug: slug },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const pageProps = await recipeData(context);
+
+  return {
+    props: {
+      page: pageProps?.data || null,
+    },
+  };
+};
+
+export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("data", data);
+
   let test = "name of recipe slug";
   return (
     <>
@@ -58,4 +87,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default Page;
