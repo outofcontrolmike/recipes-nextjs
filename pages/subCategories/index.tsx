@@ -1,12 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { categoriesData } from "../../queries/categories";
+import { subCategoriesData } from "../../queries/subCategories";
 
-//get static props
+// getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
-  const pageProps = await categoriesData(context);
+  const pageProps = await subCategoriesData(context);
 
   return {
     props: {
@@ -16,21 +14,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("data in categories collection", data);
+  console.log("data in sub categories", data);
   return (
     <>
       <Head>
-        <title>Categories</title>
-        <meta
-          name="description"
-          content="Categories Listings from MAW Web Services"
-        />
+        <title>Sub Category Page</title>
+        <meta name="description" content="List of Sub Categories" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <div>
-          <h1>This will be categories collection</h1>
+          <h1>Testing Sub Categories Collection</h1>
         </div>
       </main>
     </>

@@ -1,7 +1,7 @@
-import client from "../client";
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { sanityStaticProps } from "../lib/sanity";
 
 interface IcategoriesData {
 	data?: {
@@ -10,14 +10,12 @@ interface IcategoriesData {
 }
 
 export const categoriesData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'category'] {
-    ...,
-  }`;
+	const query = groq`*[_type == 'category']`;
 
-	const categoriesData: IcategoriesData = await client.fetch(query);({ context, query });
+	const categoriesData: IcategoriesData = await sanityStaticProps ({ context, query });
 	return categoriesData;
 
     
 };
 
-//Maybe set it up to get slug view of category eventrually
+//Maybe set it up to get slug view of category eventually
