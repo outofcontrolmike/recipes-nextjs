@@ -1,21 +1,8 @@
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { sanityClient, sanityStaticProps } from '../lib/sanity';
+import { sanityStaticProps } from '../lib/sanity';
 
-//Paths
-export const getCategoryPaths = async () => {
-	const client = sanityClient('authenticated');
-	const query = groq`*[_type == 'recipe'][0]{
-		recipe[]->{
-			'slug': slug.current,
-		},
-	}`;
-
-    //No wonder this doesnt work, client.fetch needs to be sanitystaticprops isn't real
-	const {categories} = await client.fetch(query).then((data) => data);
-	return categories;
-};
 
 interface IRecipesData {
 	data?: {
@@ -52,3 +39,5 @@ interface IRecipeData {
         return recipesData;
     }
 
+
+    //Todo: Write query that filters

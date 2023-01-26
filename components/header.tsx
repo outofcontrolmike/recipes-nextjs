@@ -10,7 +10,7 @@ export default function Header() {
       <a href="/" className="mr-6">
         <Image
           loader={customLoader}
-          src="aboutUs.jpg"
+          src="/logo.png"
           alt="MAW Web Services LLC Logo"
           width={50}
           height={20}

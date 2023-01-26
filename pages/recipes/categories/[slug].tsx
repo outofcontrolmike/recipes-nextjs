@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../../styles/Home.module.css";
+
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
 import { recipeData } from "../../../queries/recipes";
@@ -27,7 +26,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   let recipe;
   if (data?.page != undefined) {
     recipe = data?.page[0];
+    console.log("recipe in categories slug", recipe);
   }
+
   return (
     <>
       <Head>

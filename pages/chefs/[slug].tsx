@@ -42,12 +42,12 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <main className={styles.main}>
         <div>
-          <Image
+          {/* <Image
             src={data?.image?.asset?.ref}
             width="600"
             height="400"
             alt="about My wife and I photo"
-          />
+          /> */}
           <p>{chefObject?.name}</p>
           <p>{chefObject?.microBiography} </p>
           <label>Chef Description:</label>
