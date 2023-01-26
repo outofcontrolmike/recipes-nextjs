@@ -4,7 +4,9 @@ import { Baloo_Da_2, Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const customLoader = ({ src }: { src: any }) => {
+  return src;
+};
 export default function Home() {
   // let d1 = new Date();
   // let dateTogether = new Date("12/26/2016");
@@ -27,6 +29,7 @@ export default function Home() {
         <h1>About Us</h1>
         <Image
           src="/aboutUs.jpg"
+          loader={customLoader}
           width="600"
           height="1200"
           alt="about My wife and I photo"

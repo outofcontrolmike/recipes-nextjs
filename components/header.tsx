@@ -1,11 +1,16 @@
 import Image from "next/image";
 
+const customLoader = ({ src }: { src: any }) => {
+  return src;
+};
+
 export default function Header() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       <a href="/" className="mr-6">
         <Image
-          src="/logo.png"
+          loader={customLoader}
+          src="aboutUs.jpg"
           alt="MAW Web Services LLC Logo"
           width={50}
           height={20}
