@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../../styles/Home.module.css";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
-import { getCategoryPaths, recipeData } from "../../queries/recipes";
+import { recipeData } from "../../queries/recipes";
+import { SanityImage } from "../../components/image/SanityImage";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await recipeData(context);
@@ -39,12 +39,13 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       <main>
         <main className={styles.main}>
           <div>
-            {/* <Image
-              src={recipe?.mainImage?.asset}
-              width="600"
-              height="200"
-              alt="Recipe Image"
-            /> */}
+            {recipe ? (
+              <SanityImage
+                image={recipe?.mainImage}
+                alt="about My wife and I photo"
+                width={400}
+              />
+            ) : null}
             <p>Servings: {recipe?.servings}</p>
             <p>Creator: {recipe?.author?.name}</p>
             <br></br>
