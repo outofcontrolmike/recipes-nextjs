@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 import { recipeData } from "../../../queries/recipes";
 

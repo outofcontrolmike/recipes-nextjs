@@ -1,12 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../../styles/Home.module.css";
-import { useRouter } from "next/router";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { chefData } from "../../queries/chefs";
 
-import { useNextSanityImage } from "next-sanity-image";
-import { configuredSanityClient } from "../../lib/newSanity";
+import { SanityImage } from "../../components/image/SanityImage";
 
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -15,7 +12,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       page: pageProps?.data || null,
-      params: context.params,
     },
   };
 };
@@ -30,8 +26,11 @@ export async function getStaticPaths() {
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   console.log("data in slug", data);
 
-  const imageProps = useNextSanityImage(configuredSanityClient, data.image);
-  let chefObject = data?.page;
+  let chefObject;
+  if (data?.page != undefined) {
+    chefObject = data?.page;
+  }
+
   return (
     <>
       <Head>
@@ -42,12 +41,13 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <main className={styles.main}>
         <div>
-          {/* <Image
-            src={data?.image?.asset?.ref}
-            width="600"
-            height="400"
-            alt="about My wife and I photo"
-          /> */}
+          {chefObject ? (
+            <SanityImage
+              image={chefObject?.image}
+              alt="about My wife and I photo"
+              width={400}
+            />
+          ) : null}
           <p>{chefObject?.name}</p>
           <p>{chefObject?.microBiography} </p>
           <label>Chef Description:</label>
