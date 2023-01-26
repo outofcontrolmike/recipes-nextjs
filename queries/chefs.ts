@@ -34,6 +34,6 @@ interface IChefData {
             },
         }`;
     
-        const chefData: IChefData = await client.fetch(query);({ context, query });
+        const chefData: IChefData = await sanityStaticProps({ context, query });
         return chefData;
     };
