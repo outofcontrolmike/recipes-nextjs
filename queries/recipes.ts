@@ -30,9 +30,9 @@ interface IRecipeData {
         const query = groq`*[_type == 'recipe' && slug.current == '${slug}']{
             ...,
             'slug': slug.current,
-            author->{
-                ...,
-            },
+            author->,
+            categories[]->,
+            subCategory[]->
         }`;
 
         const recipesData: IRecipeData = await sanityStaticProps({context, query});

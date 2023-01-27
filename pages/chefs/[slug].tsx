@@ -57,7 +57,19 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           <p>{chefObject?.socialMediaLink}</p>
           <p>Contact?</p>
           <h2>Featured Recipes</h2>
-          <h2>Table or recipes</h2>
+          {/* Will need to make a card or something here to show more info about the recipe */}
+          {chefObject?.featuredRecipes?.map((recipe: any, index: number) => (
+            <div>
+              <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
+              <SanityImage
+                image={recipe.mainImage}
+                alt={recipe.title}
+                width={100}
+              />
+              <br></br>
+            </div>
+          ))}
+          {/* <h2>Table or recipes</h2> */}
         </div>
       </main>
     </>

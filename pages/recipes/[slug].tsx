@@ -28,6 +28,8 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (data?.page != undefined) {
     recipe = data?.page[0];
   }
+
+  console.log("data in recipe slug", recipe);
   return (
     <>
       <Head>
@@ -66,7 +68,24 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             <p>Created at: {recipe?.publishedAt}</p>
             <p>Need to map over ingredients </p>
             <p>need to map over directions</p>
-            <p>Need to map over categories and subcategories. </p>
+            <h2>Categories: </h2>
+            {recipe?.categories?.map((category: any, index: number) => (
+              <div>
+                <a href={"/categories/" + category.slug.current}>
+                  {category.title}
+                </a>
+                <br></br>
+              </div>
+            ))}
+            <h2>Sub Category: </h2>
+            {recipe?.subCategory?.map((category: any, index: number) => (
+              <div>
+                <a href={"/subCategories/" + category.slug.current}>
+                  {category.title}
+                </a>
+                <br></br>
+              </div>
+            ))}
           </div>
         </main>
       </main>

@@ -23,15 +23,13 @@ interface IChefData {
 		slug: string;
 	};
 }
-    //Chef Slug - probably similar to postData in Sanity
+    //Chef Slug
     export const chefData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
         const slug = context?.params?.slug;
         const query = groq`*[_type == 'author' && slug.current == '${slug}'][0]{
             ...,
             'slug': slug.current,
-            author->{
-                ...,
-            },
+            featuredRecipes[]->
         }`;
     
         const chefData: IChefData = await sanityStaticProps({ context, query });
