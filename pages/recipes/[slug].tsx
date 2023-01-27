@@ -49,7 +49,12 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               />
             ) : null}
             <p>Servings: {recipe?.servings}</p>
-            <p>Creator: {recipe?.author?.name}</p>
+            <p>
+              Creator:{" "}
+              <a href={"/chefs/" + recipe?.author?.name}>
+                {recipe?.author?.name}
+              </a>
+            </p>
             <br></br>
             <label>Recipe Description:</label>
             <p>Need to map over body</p>

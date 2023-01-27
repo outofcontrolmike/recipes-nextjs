@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { recipesData } from "../../queries/recipes";
+import { SanityImage } from "../../components/image/SanityImage";
 
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -15,6 +16,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   console.log("data", data);
+
+  let recipes = data.page;
   return (
     <>
       <Head>
@@ -26,6 +29,17 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       <main>
         <div>
           <h1>Testing Recipe Collection</h1>
+          {recipes?.map((recipe: any, key: number) => (
+            <div>
+              <SanityImage
+                image={recipe?.mainImage}
+                alt={recipe.title}
+                width={200}
+              />
+              <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
+              <br></br>
+            </div>
+          ))}
         </div>
       </main>
     </>
