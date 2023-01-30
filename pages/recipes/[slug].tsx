@@ -55,10 +55,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                 {recipe?.author?.name}
               </a>
             </p>
-            <br></br>
-            <label>Recipe Description:</label>
-            <p>Need to map over body</p>
-            <br></br>
+
             <p>Recipe Name: {recipe?.title}</p>
             <p>Prep Time: {recipe?.prepTime}</p>
             <p>Cook Time: {recipe?.cookTime}</p>
@@ -71,10 +68,24 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             </p>
             <p>Special Note: {recipe?.note}</p>
             <p>Created at: {recipe?.publishedAt}</p>
-            <p>Need to map over ingredients </p>
-            <p>need to map over directions</p>
+            <h2>Ingredients:</h2>
+            {recipe?.ingredients?.map((obj: any) => (
+              <div>
+                {obj.children.map((text: any) => (
+                  <div>{text.text}</div>
+                ))}
+              </div>
+            ))}
+            <h2>Directions:</h2>
+            {recipe?.body?.map((obj: any) => (
+              <div>
+                {obj.children.map((text: any) => (
+                  <div>{text.text}</div>
+                ))}
+              </div>
+            ))}
             <h2>Categories: </h2>
-            {recipe?.categories?.map((category: any, index: number) => (
+            {recipe?.categories?.map((category: any) => (
               <div>
                 <a href={"/categories/" + category.slug.current}>
                   {category.title}
