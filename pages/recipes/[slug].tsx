@@ -5,6 +5,9 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { recipeData } from "../../queries/recipes";
 import { SanityImage } from "../../components/image/SanityImage";
 
+import { parse } from "path";
+var slugify = require("slugify");
+
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await recipeData(context);
 
@@ -49,24 +52,31 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               />
             ) : null}
             <p>Servings: {recipe?.servings}</p>
-            <p>
-              Creator:{" "}
-              <a href={"/chefs/" + recipe?.author?.name}>
-                {recipe?.author?.name}
-              </a>
-            </p>
+
+            {recipe?.author?.name ? (
+              <div>
+                <h2>Creator: </h2>
+                <a href={"/chefs/" + slugify(recipe.author.name.toLowerCase())}>
+                  {recipe?.author?.name}
+                </a>
+              </div>
+            ) : null}
 
             <p>Recipe Name: {recipe?.title}</p>
             <p>Prep Time: {recipe?.prepTime}</p>
             <p>Cook Time: {recipe?.cookTime}</p>
-            <p>
+            {/* <p>
               Total Time:{" "}
-              {parseFloat(recipe?.prepTime) +
-                parseFloat(recipe?.cookTime) +
-                " "}
+              {Number.isNaN(recipe?.prepTime)
+                ? (recipe.prepTime = 0)
+                : recipe.prepTime}
+              {Number.isNaN(recipe?.cookTime)
+                ? (recipe.cookTime = 0)
+                : recipe.cookTime}
               Minutes
-            </p>
-            <p>Special Note: {recipe?.note}</p>
+            </p> */}
+            {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
+
             <p>Created at: {recipe?.publishedAt}</p>
             <h2>Ingredients:</h2>
             {recipe?.ingredients?.map((obj: any) => (
