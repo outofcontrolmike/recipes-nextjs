@@ -27,8 +27,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <h1>Testing Recipe Collection</h1>
+
         <div>
-          <h1>Testing Recipe Collection</h1>
           {recipes?.map((recipe: any, key: number) => (
             <div>
               <SanityImage

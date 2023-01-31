@@ -4,8 +4,6 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 import { recipeData } from "../../queries/recipes";
 import { SanityImage } from "../../components/image/SanityImage";
-
-import { parse } from "path";
 var slugify = require("slugify");
 
 export const getStaticProps: GetStaticProps = async (context) => {

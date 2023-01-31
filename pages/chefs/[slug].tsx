@@ -50,8 +50,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           ) : null}
           <p>{chefObject?.name}</p>
           <p>{chefObject?.microBiography} </p>
-          <label>Chef Description:</label>
-          {/* <p>{chefObject.body}</p> */}
+          <h2>Chef Description:</h2>
+          {chefObject?.body?.map((obj: any) => (
+            <div>
+              {obj.children.map((text: any) => (
+                <div>{text.text}</div>
+              ))}
+            </div>
+          ))}
           <p>{chefObject?.created}</p>
           <p>{chefObject?.businessLink}</p>
           <p>{chefObject?.socialMediaLink}</p>
