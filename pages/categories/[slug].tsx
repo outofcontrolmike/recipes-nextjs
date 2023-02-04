@@ -1,10 +1,38 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { categoryData } from "../../queries/categories";
+import { fetchByCategory } from "../../queries/categories";
+import styles from "../../styles/Home.module.css";
+
+import { SanityImage } from "../../components/image/SanityImage";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+// getStaticProps
+export const getStaticProps: GetStaticProps = async (context) => {
+  const pageProps = await categoryData(context);
+  const recipeProps = await fetchByCategory(context);
+  return {
+    props: {
+      page: pageProps?.data || null,
+      relatedRecipes: recipeProps?.data || null,
+    },
+  };
+};
+
+export async function getStaticPaths() {
+  return {
+    paths: ["/categories/[slug]"],
+    fallback: true,
+  };
+}
+
+export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
+  let categoryObject = data?.page?.[0];
+  console.log("Shiiit", data);
+
   return (
     <>
       <Head>
@@ -13,12 +41,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold underline bg-red-500"> Hello World!</h1>
-      <main>
+      <main className={styles.main}>
         <div>
-          <h1>category slug that will include all recipes related</h1>
+          <SanityImage
+            image={categoryObject?.image}
+            alt={categoryObject?.alt}
+            width={400}
+          />
+          <p>{categoryObject?.title}</p>
+          <h1>Category Description</h1>
+          <h2>{categoryObject?.description}</h2>
+          <hr></hr>
+          <p>Related Recipes:</p>
         </div>
       </main>
     </>
   );
-}
+};
+
+export default Page;

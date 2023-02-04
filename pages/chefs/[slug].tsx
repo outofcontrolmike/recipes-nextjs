@@ -24,8 +24,6 @@ export async function getStaticPaths() {
 }
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("data in slug", data);
-
   let chefObject;
   if (data?.page != undefined) {
     chefObject = data?.page;

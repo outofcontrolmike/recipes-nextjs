@@ -19,3 +19,37 @@ export const categoriesData = async (context: GetStaticPropsContext<ParsedUrlQue
 };
 
 //Maybe set it up to get slug view of category eventually
+interface ICategoryData {
+    data?: {
+        title: string;
+        slug:string;
+    }
+	
+}
+
+export const categoryData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+	const slug = context?.params?.slug;
+	const query = groq`*[_type == 'category' && slug.current == '${slug}']{
+		...,
+		'slug': slug.current,
+	}`;
+
+	const categoryData: ICategoryData = await sanityStaticProps({context, query});
+	return categoryData;
+}
+
+//Category Based Recipe Fetch
+
+// Really just need to figure out how to create a query that will loop through each recipes categories array and return the recipe if it contains the category
+
+export const fetchByCategory = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+	const slug = context?.params?.slug;
+	const query = groq`*[type == 'recipe' && category == slug.current == '${slug}']{
+		...,
+		'slug': slug.current,
+	}`;
+
+	
+	const filterRecipeData: ICategoryData = await sanityStaticProps({context, query});
+	return filterRecipeData;
+}
