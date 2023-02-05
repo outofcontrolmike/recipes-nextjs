@@ -1,10 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { categoriesData } from "../../queries/categories";
 import { SanityImage } from "../../components/image/SanityImage";
-var slugify = require("slugify");
 
 //get static props
 export const getStaticProps: GetStaticProps = async (context) => {
