@@ -22,7 +22,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
-        <title>Categories</title>
+        <title>Recipes Categories</title>
         <meta
           name="description"
           content="Categories Listings from MAW Web Services"

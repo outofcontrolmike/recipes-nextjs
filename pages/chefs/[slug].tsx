@@ -32,7 +32,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
-        <title>Slug for Chef</title>
+        <title>Chef {chefObject?.name}</title>
         <meta name="description" content="Information about specific chef" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
