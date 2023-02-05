@@ -1,4 +1,3 @@
-import client from "../client";
 import groq from 'groq';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
@@ -19,3 +18,23 @@ export const subCategoriesData = async (context: GetStaticPropsContext<ParsedUrl
     
 };
 
+interface ISubCategoryData {
+    data?: {
+        title: string;
+        slug:string;
+    }
+	
+}
+
+
+//Slug of Sub Category
+export const subCategoryData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+	const slug = context?.params?.slug;
+	const query = groq`*[_type == 'subCategory' && slug.current == '${slug}']{
+		...,
+		'slug': slug.current,
+	}`;
+
+	const subCategoryData: ISubCategoryData = await sanityStaticProps({context, query});
+	return subCategoryData;
+}

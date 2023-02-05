@@ -1,14 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { categoryData } from "../../queries/categories";
 import { fetchByCategory } from "../../queries/categories";
 import styles from "../../styles/Home.module.css";
 
 import { SanityImage } from "../../components/image/SanityImage";
-
-const inter = Inter({ subsets: ["latin"] });
 
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
