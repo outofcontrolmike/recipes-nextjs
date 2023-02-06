@@ -3,17 +3,16 @@ import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 import { recipesData } from "../../../queries/recipes";
-import { categoriesData } from "../../../queries/categories";
-
+import { categoryFilteredData } from "../../../queries/recipes";
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await recipesData(context);
-  const categoryNames = await categoriesData(context);
+  const relatedRecipesProps = await categoryFilteredData(context);
 
   return {
     props: {
       page: pageProps?.data || null,
-      categories: categoryNames?.data || null,
       params: context.params,
+      relatedRecipes: relatedRecipesProps?.data || null,
     },
   };
 };
@@ -26,21 +25,8 @@ export async function getStaticPaths() {
 }
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  let recipe;
-  if (data?.page != undefined) {
-    recipe = data?.page[0];
-    console.log("recipe in categories slug", data);
-  }
-
+  console.log("data... check if we have related recipes", data);
   let slug = data?.params?.slug;
-
-  // const unslugify = (slug: string) => {
-  //   const result = slug.replace(/\-/g, " ");
-  //   return result.replace(/\w\S*/g, function (txt) {
-  //     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  //   });
-  // };
-
   return (
     <>
       <Head>
@@ -49,22 +35,16 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        { slug ?
+      {slug ? (
         <div>
-        <h1>Recipes Based on {slug}</h1> 
-        {data?.page?.map((recipe: any) => {
-
-          {recipe?.categories?.map((category: any) => {
-    
-            if(category?.slug?.current?.includes(`${slug}`)){
-              return(
-            <h1>Test</h1>
-              );
-            }
+          <h1>Recipes Based on {slug}</h1>
+          {data?.relatedRecipes?.map((recipe: any) => {
+            return <h1>{recipe?.title}</h1>;
           })}
-      })} </div> : null}
+        </div>
+      ) : null}
+      ;
     </>
   );
 };
-
 export default Page;

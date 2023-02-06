@@ -44,4 +44,11 @@ interface IRecipeData {
     }
 
 
-    //Todo: Write query that filters
+    //Todo: Write query that filters for category slug
+    export const categoryFilteredData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+         const slug = context?.params?.slug;
+        const query = groq`*[count((categories[]->slug.current)[@ in ['${slug}']]) > 0]`;
+
+        const recipesData: IRecipeData = await sanityStaticProps({context, query});
+        return recipesData;
+    }
