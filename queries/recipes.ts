@@ -12,7 +12,11 @@ interface IRecipesData {
 
 //Get all recipes
 export const recipesData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'recipe']`;
+	const query = groq`*[_type == 'recipe']{
+        ...,
+        categories[]->,
+        subCategory[]->
+    }`;
 
 
   const recipesData: IRecipesData = await sanityStaticProps({ context, query });
