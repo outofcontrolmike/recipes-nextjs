@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { categoryData } from "../../queries/categories";
-import { fetchByCategory } from "../../queries/categories";
+import { categoryFilteredData } from "../../queries/recipes";
+
 import styles from "../../styles/Home.module.css";
 
 import { SanityImage } from "../../components/image/SanityImage";
@@ -9,11 +10,11 @@ import { SanityImage } from "../../components/image/SanityImage";
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await categoryData(context);
-  const recipeProps = await fetchByCategory(context);
+  const relatedRecipesProps = await categoryFilteredData(context);
   return {
     props: {
       page: pageProps?.data || null,
-      relatedRecipes: recipeProps?.data || null,
+      relatedRecipes: relatedRecipesProps?.data || null,
     },
   };
 };
@@ -49,6 +50,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           <h2>{categoryObject?.description}</h2>
           <hr></hr>
           <p>Related Recipes:</p>
+          {data?.relatedRecipes ? (
+            <div>
+              <h1>Recipes Based on {categoryObject?.title}</h1>
+              {data?.relatedRecipes?.map((recipe: any) => {
+                return <h1>{recipe?.title}</h1>;
+              })}
+            </div>
+          ) : null}
         </div>
       </main>
     </>
