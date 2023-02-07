@@ -3,15 +3,15 @@ import styles from "../../styles/Home.module.css";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { SanityImage } from "../../components/image/SanityImage";
 import { subCategoryData } from "../../queries/subCategories";
-
-
+import { subCategoryFilteredData } from "../../queries/recipes";
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await subCategoryData(context);
+  const recipesProps = await subCategoryFilteredData(context);
   return {
     props: {
       page: pageProps?.data || null,
-      // relatedRecipes: recipeProps?.data || null,
+      recipes: recipesProps?.data || null,
     },
   };
 };
@@ -23,14 +23,14 @@ export async function getStaticPaths() {
   };
 }
 
-export const SubCategory = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-
-  
+export const SubCategory = (
+  data: InferGetStaticPropsType<typeof getStaticProps>
+) => {
   let subCategory = data?.page?.[0];
 
   console.log("sub Cat", subCategory);
+  console.log("recipes", data?.recipes);
   return (
-
     <>
       <Head>
         <title>Sub Category - {subCategory?.title}</title>
@@ -39,7 +39,7 @@ export const SubCategory = (data: InferGetStaticPropsType<typeof getStaticProps>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {subCategory ?
+        {subCategory ? (
           <div>
             <SanityImage
               image={subCategory?.image}
@@ -51,10 +51,12 @@ export const SubCategory = (data: InferGetStaticPropsType<typeof getStaticProps>
             <h2>{subCategory?.description}</h2>
             <hr></hr>
             <p>Related Recipes:</p>
-          </div> : null}
+            {data?.recipes[0].title}
+          </div>
+        ) : null}
       </main>
     </>
   );
-}
+};
 
 export default SubCategory;
