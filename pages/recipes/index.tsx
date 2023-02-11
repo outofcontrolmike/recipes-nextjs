@@ -29,10 +29,10 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       <main>
         <h1>Testing Recipe Collection</h1>
 
-        <div>
+        <div className="flex m-10">
           {recipes?.map((recipe: any, key: number) => (
-            <div>
-              <SanityImage
+          <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
+          <SanityImage
                 image={recipe?.mainImage}
                 alt={recipe.title}
                 width={200}

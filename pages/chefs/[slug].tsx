@@ -38,7 +38,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div>
+      <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
           {chefObject ? (
             <SanityImage
               image={chefObject?.image}
