@@ -37,18 +37,22 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-      <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
-          {chefObject ? (
+      {chefObject ? (
+
+      <main>
+      <div  className="container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none">
+        <div>         
+
             <SanityImage
               image={chefObject?.image}
-              alt="about My wife and I photo"
+              alt={chefObject?.name + "'s portfolio picture."}
               width={400}
             />
-          ) : null}
-          <p>{chefObject?.name}</p>
+          </div>
+          <div>
+          <h1>{chefObject?.name}</h1>
           <p>{chefObject?.microBiography} </p>
-          <h2>Chef Description:</h2>
+          <h2>Summary:</h2>
           {chefObject?.body?.map((obj: any) => (
             <div>
               {obj.children.map((text: any) => (
@@ -60,22 +64,28 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           <p>{chefObject?.businessLink}</p>
           <p>{chefObject?.socialMediaLink}</p>
           <p>Contact?</p>
+          </div>
+          </div>
+          <hr></hr>
           <h2>Featured Recipes</h2>
+
           {/* Will need to make a card or something here to show more info about the recipe */}
           {chefObject?.featuredRecipes?.map((recipe: any, index: number) => (
-            <div>
+            <div className="grid gap-4 grid-cols-4 row-3">
+              
               <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
               <SanityImage
                 image={recipe.mainImage}
                 alt={recipe.title}
                 width={100}
               />
-              <br></br>
-            </div>
+              </div>
           ))}
           {/* <h2>Table or recipes</h2> */}
-        </div>
+      
       </main>
+                ) : null}
+
     </>
   );
 };
