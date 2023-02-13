@@ -46,7 +46,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               <SanityImage
                 image={chefObject?.image}
                 alt={chefObject?.name + "'s portfolio picture."}
-                width={400}
+                width={500}
               />
             </div>
             <div>
