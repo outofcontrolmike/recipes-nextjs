@@ -21,34 +21,44 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   let subCategories = data.page;
   return (
     <>
-    <Head>
-      <title>Sub Categories</title>
-      <meta
-        name="description"
-        content="Categories Listings from MAW Web Services"
-      />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <main>
-      {subCategories ?    <div>
-        <h1>This will be sub Categories collection</h1>
-        {subCategories?.map((subCategory: any) => (
+      <Head>
+        <title>Sub Categories</title>
+        <meta
+          name="description"
+          content="Categories Listings from MAW Web Services"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <main>
+        {subCategories ? (
           <div>
-            <SanityImage
-              image={subCategory?.image}
-              alt={subCategory?.title}
-              width={200}
-            />
-            <a href={"/subCategories/" + subCategory.slug.current}>
-              {subCategory.title}
-            </a>
-            <p>{subCategory.description}</p>
+            <h1>This will be sub Categories collection</h1>
+            {subCategories?.map((subCategory: any) => (
+              <div>
+                <SanityImage
+                  image={subCategory?.image}
+                  alt={subCategory?.title}
+                  width={200}
+                />
+                <a href={"/subCategories/" + subCategory.slug.current}>
+                  {subCategory.title}
+                </a>
+                <p>{subCategory.description}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div> : null }
-    </main>
-  </>
+        ) : null}
+      </main>
+    </>
   );
 };
 

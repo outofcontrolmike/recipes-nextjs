@@ -82,6 +82,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 html,
@@ -90,9 +91,9 @@ body {
   overflow-x: hidden;
   font-size: medium;
 }
+
 h1 {
-  font-size: xx-large;
-  font-weight: bolder;
+  font-size: xxx-large;
 }
 
 h2 {

@@ -38,33 +38,35 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {chefObject ? (
-
-      <main>
-      <div  className="container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none">
-        <div>         
-
-            <SanityImage
-              image={chefObject?.image}
-              alt={chefObject?.name + "'s portfolio picture."}
-              width={400}
-            />
-          </div>
-          <div>
-          <h1>{chefObject?.name}</h1>
-          <p>{chefObject?.microBiography} </p>
-          <h2>Summary:</h2>
-          {chefObject?.body?.map((obj: any) => (
+        <main className="pt-10">
+          <div className="container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none">
             <div>
-              {obj.children.map((text: any) => (
-                <div>{text.text}</div>
-              ))}
+              <SanityImage
+                image={chefObject?.image}
+                alt={chefObject?.name + "'s portfolio picture."}
+                width={300}
+              />
             </div>
-          ))}
-          <p>{chefObject?.created}</p>
-          <p>{chefObject?.businessLink}</p>
-          <p>{chefObject?.socialMediaLink}</p>
-          <p>Contact?</p>
-          </div>
+            <div>
+              <h1 className="font-thin">{chefObject?.name}</h1>
+              <p className="font-thin text-gray-500">
+                {chefObject?.microBiography}{" "}
+              </p>
+
+              <br></br>
+              {chefObject?.body?.map((obj: any) => (
+                <div>
+                  {obj.children.map((text: any) => (
+                    <div>{text.text}</div>
+                  ))}
+                </div>
+              ))}
+              <br></br>
+              <p>{chefObject?.created}</p>
+              <p>{chefObject?.businessLink}</p>
+              <p>{chefObject?.socialMediaLink}</p>
+              <p>Contact?</p>
+            </div>
           </div>
           <hr></hr>
           <h2>Featured Recipes</h2>
@@ -72,20 +74,16 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           {/* Will need to make a card or something here to show more info about the recipe */}
           {chefObject?.featuredRecipes?.map((recipe: any, index: number) => (
             <div className="grid gap-4 grid-cols-4 row-3">
-              
               <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
               <SanityImage
                 image={recipe.mainImage}
                 alt={recipe.title}
                 width={100}
               />
-              </div>
+            </div>
           ))}
-          {/* <h2>Table or recipes</h2> */}
-      
-      </main>
-                ) : null}
-
+        </main>
+      ) : null}
     </>
   );
 };
