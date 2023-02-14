@@ -31,11 +31,10 @@ export default function Home() {
             "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
           }
         >
-          <h1>About Us</h1>
           <Image
             src="/aboutUs.jpg"
             loader={customLoader}
-            width="600"
+            width="800"
             height="1200"
             alt="about My wife and I photo"
           />
@@ -45,17 +44,20 @@ export default function Home() {
             been together since Christmas 2016, and have lived with each other
             since the Fall of 2017.
           </p>
+          <br></br>
           <p>
             As you can imagine, figuring out what to cook every night for almost
             a decade can turn into a chore but we try to keep in mind that we
             should be grateful that we both enjoy cooking and like to make
             different recipes.{" "}
           </p>
+          <br></br>
           <p>
             Personally, I was inspired to create some type of website for my
             wife and I to use for reading our recipes. Luckily I learned about
             Sanity.IO as a platform to use for uploading our recipes.
           </p>
+          <br></br>
           <p>
             We've decided to also allow people to view our recipes as well as
             contribute their own recipes to our site.
@@ -66,6 +68,7 @@ export default function Home() {
             things about being able to travel is experiencing the different
             cuisines that other geographical locations offer.
           </p>
+          <br></br>
           <p>
             We also love exploring the local restaurants and craft breweries
             around the 417 as well as partaking in festivals that seem feasible.
