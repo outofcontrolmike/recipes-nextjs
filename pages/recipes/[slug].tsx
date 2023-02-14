@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
+import BlockContent from "@sanity/block-content-to-react";
 import { recipeData } from "../../queries/recipes";
 import { SanityImage } from "../../components/image/SanityImage";
 var slugify = require("slugify");
@@ -76,21 +77,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
 
               <p>Created at: {recipe?.publishedAt}</p>
               <h2>Ingredients:</h2>
-              {recipe?.ingredients?.map((obj: any) => (
-                <div>
-                  {obj.children.map((text: any) => (
-                    <div>{text.text}</div>
-                  ))}
-                </div>
-              ))}
+              {recipe?.ingredients ? (
+                <BlockContent blocks={recipe?.ingredients}></BlockContent>
+              ) : null}
+
               <h2>Directions:</h2>
-              {recipe?.body?.map((obj: any) => (
-                <div>
-                  {obj.children.map((text: any) => (
-                    <div>{text.text}</div>
-                  ))}
-                </div>
-              ))}
+              {recipe?.body ? (
+                <BlockContent blocks={recipe?.body}></BlockContent>
+              ) : null}
               <h2>Categories: </h2>
               {recipe?.categories?.map((category: any) => (
                 <div>
