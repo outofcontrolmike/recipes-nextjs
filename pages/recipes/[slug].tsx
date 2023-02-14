@@ -41,31 +41,28 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       <main>
         <div
           className={
-            "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
           }
         >
-          {recipe ? (
-            <SanityImage
-              image={recipe?.mainImage}
-              alt="about My wife and I photo"
-              width={400}
-            />
-          ) : null}
-          <p>Servings: {recipe?.servings}</p>
-
-          {recipe?.author?.name ? (
+          <div className="grid grid-cols-2">
             <div>
-              <h2>Creator: </h2>
-              <a href={"/chefs/" + slugify(recipe.author.name.toLowerCase())}>
-                {recipe?.author?.name}
-              </a>
+              {recipe ? (
+                <div>
+                  <SanityImage
+                    image={recipe?.mainImage}
+                    alt={recipe?.title + " image"}
+                    width={700}
+                  />
+                  <h1>{recipe?.title}</h1>
+                </div>
+              ) : null}
             </div>
-          ) : null}
+            <div style={{ maxHeight: "650px", overflowY: "scroll" }}>
+              <p>Servings: {recipe?.servings}</p>
 
-          <p>Recipe Name: {recipe?.title}</p>
-          <p>Prep Time: {recipe?.prepTime}</p>
-          <p>Cook Time: {recipe?.cookTime}</p>
-          {/* <p>
+              <p>Prep Time: {recipe?.prepTime}</p>
+              <p>Cook Time: {recipe?.cookTime}</p>
+              {/* <p>
               Total Time:{" "}
               {Number.isNaN(recipe?.prepTime)
                 ? (recipe.prepTime = 0)
@@ -75,43 +72,45 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                 : recipe.cookTime}
               Minutes
             </p> */}
-          {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
+              {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
 
-          <p>Created at: {recipe?.publishedAt}</p>
-          <h2>Ingredients:</h2>
-          {recipe?.ingredients?.map((obj: any) => (
-            <div>
-              {obj.children.map((text: any) => (
-                <div>{text.text}</div>
+              <p>Created at: {recipe?.publishedAt}</p>
+              <h2>Ingredients:</h2>
+              {recipe?.ingredients?.map((obj: any) => (
+                <div>
+                  {obj.children.map((text: any) => (
+                    <div>{text.text}</div>
+                  ))}
+                </div>
+              ))}
+              <h2>Directions:</h2>
+              {recipe?.body?.map((obj: any) => (
+                <div>
+                  {obj.children.map((text: any) => (
+                    <div>{text.text}</div>
+                  ))}
+                </div>
+              ))}
+              <h2>Categories: </h2>
+              {recipe?.categories?.map((category: any) => (
+                <div>
+                  <a href={"/categories/" + category.slug.current}>
+                    {category.title}
+                  </a>
+                  <br></br>
+                </div>
+              ))}
+              <h2>Sub Category: </h2>
+              {recipe?.subCategory?.map((category: any, index: number) => (
+                <div>
+                  <a href={"/subCategories/" + category.slug.current}>
+                    {category.title}
+                  </a>
+                  <br></br>
+                </div>
               ))}
             </div>
-          ))}
-          <h2>Directions:</h2>
-          {recipe?.body?.map((obj: any) => (
-            <div>
-              {obj.children.map((text: any) => (
-                <div>{text.text}</div>
-              ))}
-            </div>
-          ))}
-          <h2>Categories: </h2>
-          {recipe?.categories?.map((category: any) => (
-            <div>
-              <a href={"/categories/" + category.slug.current}>
-                {category.title}
-              </a>
-              <br></br>
-            </div>
-          ))}
-          <h2>Sub Category: </h2>
-          {recipe?.subCategory?.map((category: any, index: number) => (
-            <div>
-              <a href={"/subCategories/" + category.slug.current}>
-                {category.title}
-              </a>
-              <br></br>
-            </div>
-          ))}
+          </div>
         </div>
       </main>
     </>
