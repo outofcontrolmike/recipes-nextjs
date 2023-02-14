@@ -108,6 +108,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               ) : null}
               <br></br>
               <hr></hr>
+              {recipe?.embeddedLink ? <p>{recipe.embeddedLink} test</p> : null}
               <div className="grid grid-cols-2 mt-4">
                 {" "}
                 <h2 className="pb-2">Categories: </h2>
