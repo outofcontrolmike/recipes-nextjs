@@ -65,9 +65,11 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                       <p className="text-gray-900 leading-none">
                         {recipe?.author?.name}
                       </p>
-                      <p className="text-gray-600">
-                        {recipe?.publishedAt.slice(0, 10)}{" "}
-                      </p>
+                      {recipe?.publishedAt ? (
+                        <p className="text-gray-600">
+                          {recipe?.publishedAt.slice(0, 10)}{" "}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                   <p>Servings: {recipe?.servings}</p>
@@ -109,7 +111,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               <div className="grid grid-cols-2 mt-4">
                 {" "}
                 <h2 className="pb-2">Categories: </h2>
-                <h2 className="pb-4">Sub Category: </h2>
+                <h2 className="pb-4">Sub Categories: </h2>
                 {recipe?.categories?.map((category: any) => (
                   <div>
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
@@ -140,13 +142,12 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               </div>
               <br></br>
               <hr></hr>
-              <p className="font-thin text-gray-500">
-                {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
-              </p>
-              <span className="font-thick text-teal-500">Published:</span>{" "}
-              <span className="font-thick text-teal-500">
-                {recipe?.publishedAt.slice(0, 10)}
-              </span>
+              {recipe?.note ? (
+                <div>
+                  <h2 className="pb-4">Chef's Note: </h2>
+                  <p className="font-thin">{recipe.note}</p>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
