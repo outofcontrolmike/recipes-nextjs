@@ -6,14 +6,14 @@ const customLoader = ({ src }: { src: any }) => {
 
 export default function Header() {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav className="flex items-center justify-between flex-wrap p-6">
       <a href="/" className="mr-6">
         <Image
           loader={customLoader}
           src="/logo.png"
           alt="MAW Web Services LLC Logo"
-          width={50}
-          height={20}
+          width={75}
+          height={50}
           priority
         />
       </a>
@@ -21,25 +21,25 @@ export default function Header() {
         <div className="text-medium lg:flex-grow">
           <a
             href="/recipes"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
           >
             Recipes
           </a>
           <a
             href="/chefs"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
           >
             Chefs
           </a>
           <a
             href="/about"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
           >
             About
           </a>
           <a
             href="/contact"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black"
           >
             Contact
           </a>

@@ -28,9 +28,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={"m-4 flex"}>
+      <main className={"container columns-4 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"}>
         {chefs?.map((chef: any, key: number) => (
-          <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
+          <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none bg-white">
             <SanityImage
             className="w-full"
               image={chef?.image}

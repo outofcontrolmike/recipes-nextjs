@@ -30,7 +30,6 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
     recipe = data?.page[0];
   }
 
-  console.log("data in recipe slug", recipe);
   return (
     <>
       <Head>
@@ -39,7 +38,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <main className={"container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"}>
+        <main className={"container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"}>
           <div>
             {recipe ? (
               <SanityImage

@@ -2,7 +2,7 @@ export default function Header() {
   const d = new Date();
   let year = d.getFullYear();
   return (
-    <footer className=" bg-teal-500 p-6 ">
+    <footer className=" p-6 mt-4 ">
       <div>
         <p className="text-center pb-3">
           &copy; MAW Web Services LLC. All Rights Reserved - {year}
