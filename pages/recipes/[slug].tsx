@@ -39,7 +39,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {recipe ? (
       <main>
+ 
         <div
           className={
             "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
@@ -47,7 +49,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         >
           <div className="grid grid-cols-2 gap-6">
             <div className="p-5">
-              {recipe ? (
+       
                 <div className="">
                   <SanityImage
                     image={recipe?.mainImage}
@@ -77,27 +79,21 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>Cook Time: {recipe?.cookTime}</p>
                 </div>
-              ) : null}
+     
             </div>
             <div
               className="p-5"
               style={{ maxHeight: "650px", overflowY: "scroll" }}
             >
               <h1>{recipe?.title}</h1>
-              <h2 className="pb-2 pt-2">Description:</h2>
               {recipe?.description ? (
+                <div>
+              <h2 className="pb-2 pt-2">Description:</h2>
+          
                 <BlockContent blocks={recipe?.description}></BlockContent>
-              ) : null}
-              {/* <p>
-              Total Time:{" "}
-              {Number.isNaN(recipe?.prepTime)
-                ? (recipe.prepTime = 0)
-                : recipe.prepTime}
-              {Number.isNaN(recipe?.cookTime)
-                ? (recipe.cookTime = 0)
-                : recipe.cookTime}
-              Minutes
-            </p> */}
+                </div>
+            ) : null}
+    
               <h2 className="pb-2 pt-2">Ingredients:</h2>
               {recipe?.ingredients ? (
                 <BlockContent blocks={recipe?.ingredients}></BlockContent>
@@ -153,6 +149,8 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
           </div>
         </div>
       </main>
+                       ) : null}
+
     </>
   );
 };
