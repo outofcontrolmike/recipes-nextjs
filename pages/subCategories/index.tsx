@@ -40,7 +40,11 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <main>
         {subCategories ? (
-          <div>
+          <div
+            className={
+              "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            }
+          >
             <h1>This will be sub Categories collection</h1>
             {subCategories?.map((subCategory: any) => (
               <div>

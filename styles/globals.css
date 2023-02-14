@@ -86,8 +86,8 @@
 }
 
 main {
-  background-color:rgb(20 184 166);
-  padding:2rem;
+  background-color: rgb(20 184 166);
+  padding: 2rem;
 }
 
 html,
@@ -98,6 +98,10 @@ body {
 }
 
 nav {
+  background-color: white;
+}
+
+#pageCard {
   background-color: white;
 }
 

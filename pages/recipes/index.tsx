@@ -27,20 +27,26 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Testing Recipe Collection</h1>
+        <div
+          className={
+            "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+          }
+        >
+          <h1>Testing Recipe Collection</h1>
 
-        <div className="flex m-10">
-          {recipes?.map((recipe: any, key: number) => (
-          <div  className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
-          <SanityImage
-                image={recipe?.mainImage}
-                alt={recipe.title}
-                width={200}
-              />
-              <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
-              <br></br>
-            </div>
-          ))}
+          <div className="flex m-10">
+            {recipes?.map((recipe: any, key: number) => (
+              <div className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
+                <SanityImage
+                  image={recipe?.mainImage}
+                  alt={recipe.title}
+                  width={200}
+                />
+                <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
+                <br></br>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </>

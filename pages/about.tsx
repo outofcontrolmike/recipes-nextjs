@@ -25,46 +25,52 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1>About Us</h1>
-        <Image
-          src="/aboutUs.jpg"
-          loader={customLoader}
-          width="600"
-          height="1200"
-          alt="about My wife and I photo"
-        />
-        <h1 style={{ fontStyle: "italic" }}>Who We Are</h1>
-        <p>
-          We are Michael and Jessica Wilson as of March 13th, 2022. We have been
-          together since Christmas 2016, and have lived with each other since
-          the Fall of 2017.
-        </p>
-        <p>
-          As you can imagine, figuring out what to cook every night for almost a
-          decade can turn into a chore but we try to keep in mind that we should
-          be grateful that we both enjoy cooking and like to make different
-          recipes.{" "}
-        </p>
-        <p>
-          Personally, I was inspired to create some type of website for my wife
-          and I to use for reading our recipes. Luckily I learned about
-          Sanity.IO as a platform to use for uploading our recipes.
-        </p>
-        <p>
-          We've decided to also allow people to view our recipes as well as
-          contribute their own recipes to our site.
-        </p>
-        <h1 style={{ fontStyle: "italic" }}>What else we like to do</h1>
-        <p>
-          We enjoy traveling and hiking when time permits. One of the best
-          things about being able to travel is experiencing the different
-          cuisines that other geographical locations offer.
-        </p>
-        <p>
-          We also love exploring the local restaurants and craft breweries
-          around the 417 as well as partaking in festivals that seem feasible.
-        </p>
+      <main>
+        <div
+          className={
+            "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+          }
+        >
+          <h1>About Us</h1>
+          <Image
+            src="/aboutUs.jpg"
+            loader={customLoader}
+            width="600"
+            height="1200"
+            alt="about My wife and I photo"
+          />
+          <h1 style={{ fontStyle: "italic" }}>Who We Are</h1>
+          <p>
+            We are Michael and Jessica Wilson as of March 13th, 2022. We have
+            been together since Christmas 2016, and have lived with each other
+            since the Fall of 2017.
+          </p>
+          <p>
+            As you can imagine, figuring out what to cook every night for almost
+            a decade can turn into a chore but we try to keep in mind that we
+            should be grateful that we both enjoy cooking and like to make
+            different recipes.{" "}
+          </p>
+          <p>
+            Personally, I was inspired to create some type of website for my
+            wife and I to use for reading our recipes. Luckily I learned about
+            Sanity.IO as a platform to use for uploading our recipes.
+          </p>
+          <p>
+            We've decided to also allow people to view our recipes as well as
+            contribute their own recipes to our site.
+          </p>
+          <h1 style={{ fontStyle: "italic" }}>What else we like to do</h1>
+          <p>
+            We enjoy traveling and hiking when time permits. One of the best
+            things about being able to travel is experiencing the different
+            cuisines that other geographical locations offer.
+          </p>
+          <p>
+            We also love exploring the local restaurants and craft breweries
+            around the 417 as well as partaking in festivals that seem feasible.
+          </p>
+        </div>
       </main>
     </>
   );

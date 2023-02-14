@@ -38,9 +38,13 @@ export const SubCategory = (
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={"container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"}>
+      <main>
         {subCategory ? (
-          <div>
+          <div
+            className={
+              "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            }
+          >
             <SanityImage
               image={subCategory?.image}
               alt={subCategory?.alt}

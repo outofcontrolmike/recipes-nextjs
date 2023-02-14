@@ -32,9 +32,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <main>
         <div>
+          {" "}
           <h1>This will be categories collection</h1>
           {categories?.map((category: any) => (
-            <div>
+            <div
+              className={
+                "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+              }
+            >
               <SanityImage
                 image={category?.image}
                 alt={category?.title}
