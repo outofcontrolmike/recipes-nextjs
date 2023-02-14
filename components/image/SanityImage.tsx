@@ -13,7 +13,7 @@ const customLoader = ({ src }: { src: string }) => {
   return src;
 };
 
-export const SanityImage = ({ image, className, alt, width,  }: Props) => {
+export const SanityImage = ({ image, className, alt, width }: Props) => {
   const imageProps = useNextSanityImage(configuredSanityClient, image);
 
   return (

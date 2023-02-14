@@ -1,11 +1,9 @@
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 import BlockContent from "@sanity/block-content-to-react";
 import { recipeData } from "../../queries/recipes";
 import { SanityImage } from "../../components/image/SanityImage";
-var slugify = require("slugify");
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await recipeData(context);
@@ -31,6 +29,8 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
     recipe = data?.page[0];
   }
 
+  console.log("data", data);
+
   return (
     <>
       <Head>
@@ -45,24 +45,47 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
           }
         >
-          <div className="grid grid-cols-2">
-            <div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="p-5">
               {recipe ? (
-                <div>
+                <div className="">
                   <SanityImage
                     image={recipe?.mainImage}
                     alt={recipe?.title + " image"}
                     width={700}
                   />
-                  <h1>{recipe?.title}</h1>
+                  <div className="flex items-center pt-4">
+                    <SanityImage
+                      className="w-10 h-10 rounded-full mr-4"
+                      image={recipe?.author?.image}
+                      width={10}
+                      alt={"test"}
+                    />
+                    <div className="text-sm">
+                      <p className="text-gray-900 leading-none">
+                        {recipe?.author?.name}
+                      </p>
+                      <p className="text-gray-600">
+                        {recipe?.publishedAt.slice(0, 10)}{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <p>Servings: {recipe?.servings}</p>
+
+                  <p>Prep Time: {recipe?.prepTime}</p>
+                  <p>Cook Time: {recipe?.cookTime}</p>
                 </div>
               ) : null}
             </div>
-            <div style={{ maxHeight: "650px", overflowY: "scroll" }}>
-              <p>Servings: {recipe?.servings}</p>
-
-              <p>Prep Time: {recipe?.prepTime}</p>
-              <p>Cook Time: {recipe?.cookTime}</p>
+            <div
+              className="p-5"
+              style={{ maxHeight: "650px", overflowY: "scroll" }}
+            >
+              <h1>{recipe?.title}</h1>
+              <h2 className="pb-2 pt-2">Description:</h2>
+              {recipe?.description ? (
+                <BlockContent blocks={recipe?.description}></BlockContent>
+              ) : null}
               {/* <p>
               Total Time:{" "}
               {Number.isNaN(recipe?.prepTime)
@@ -73,36 +96,57 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                 : recipe.cookTime}
               Minutes
             </p> */}
-              {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
-
-              <p>Created at: {recipe?.publishedAt}</p>
-              <h2>Ingredients:</h2>
+              <h2 className="pb-2 pt-2">Ingredients:</h2>
               {recipe?.ingredients ? (
                 <BlockContent blocks={recipe?.ingredients}></BlockContent>
               ) : null}
-
-              <h2>Directions:</h2>
+              <h2 className="pt-2 pb-2">Directions:</h2>
               {recipe?.body ? (
                 <BlockContent blocks={recipe?.body}></BlockContent>
               ) : null}
-              <h2>Categories: </h2>
-              {recipe?.categories?.map((category: any) => (
-                <div>
-                  <a href={"/categories/" + category.slug.current}>
-                    {category.title}
-                  </a>
-                  <br></br>
-                </div>
-              ))}
-              <h2>Sub Category: </h2>
-              {recipe?.subCategory?.map((category: any, index: number) => (
-                <div>
-                  <a href={"/subCategories/" + category.slug.current}>
-                    {category.title}
-                  </a>
-                  <br></br>
-                </div>
-              ))}
+              <br></br>
+              <hr></hr>
+              <div className="grid grid-cols-2 mt-4">
+                {" "}
+                <h2 className="pb-2">Categories: </h2>
+                <h2 className="pb-4">Sub Category: </h2>
+                {recipe?.categories?.map((category: any) => (
+                  <div>
+                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
+                      <a
+                        href={"/categories/" + category.slug.current}
+                        key={Math.random()}
+                      >
+                        {category.title}
+                      </a>
+                    </span>
+
+                    <br></br>
+                  </div>
+                ))}
+                {recipe?.subCategory?.map((category: any) => (
+                  <div>
+                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
+                      <a
+                        href={"/subCategories/" + category.slug.current}
+                        key={Math.random()}
+                      >
+                        {category.title}
+                      </a>
+                    </span>
+                    <br></br>
+                  </div>
+                ))}
+              </div>
+              <br></br>
+              <hr></hr>
+              <p className="font-thin text-gray-500">
+                {recipe?.note ? <p>Special Note: {recipe.note}</p> : null}
+              </p>
+              <span className="font-thick text-teal-500">Published:</span>{" "}
+              <span className="font-thick text-teal-500">
+                {recipe?.publishedAt.slice(0, 10)}
+              </span>
             </div>
           </div>
         </div>
