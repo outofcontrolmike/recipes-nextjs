@@ -47,8 +47,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             width={400}
           />
           <h1>{categoryObject?.title}</h1>
-          <h2>{categoryObject?.description}</h2>
-
+          <p className="text-gray-700 text-lg">{categoryObject?.description}</p>
           {/* Testing */}
           {data?.relatedRecipes ? (
             <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">

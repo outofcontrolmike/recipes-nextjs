@@ -40,16 +40,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {recipe ? (
-      <main>
- 
-        <div
-          className={
-            "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
-          }
-        >
-          <div className="grid grid-cols-2 gap-6">
-            <div className="p-5">
-       
+        <main>
+          <div
+            className={
+              "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            }
+          >
+            <div className="grid grid-cols-2 gap-6">
+              <div className="p-5">
                 <div className="">
                   <SanityImage
                     image={recipe?.mainImage}
@@ -79,78 +77,78 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>Cook Time: {recipe?.cookTime}</p>
                 </div>
-     
-            </div>
-            <div
-              className="p-5"
-              style={{ maxHeight: "650px", overflowY: "scroll" }}
-            >
-              <h1>{recipe?.title}</h1>
-              {recipe?.description ? (
-                <div>
-              <h2 className="pb-2 pt-2">Description:</h2>
-          
-                <BlockContent blocks={recipe?.description}></BlockContent>
-                </div>
-            ) : null}
-    
-              <h2 className="pb-2 pt-2">Ingredients:</h2>
-              {recipe?.ingredients ? (
-                <BlockContent blocks={recipe?.ingredients}></BlockContent>
-              ) : null}
-              <h2 className="pt-2 pb-2">Directions:</h2>
-              {recipe?.body ? (
-                <BlockContent blocks={recipe?.body}></BlockContent>
-              ) : null}
-              <br></br>
-              <hr></hr>
-              {recipe?.embeddedLink ? <p>{recipe.embeddedLink} test</p> : null}
-              <div className="grid grid-cols-2 mt-4">
-                {" "}
-                <h2 className="pb-2">Categories: </h2>
-                <h2 className="pb-4">Sub Categories: </h2>
-                {recipe?.categories?.map((category: any) => (
-                  <div>
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
-                      <a
-                        href={"/categories/" + category.slug.current}
-                        key={Math.random()}
-                      >
-                        {category.title}
-                      </a>
-                    </span>
-
-                    <br></br>
-                  </div>
-                ))}
-                {recipe?.subCategory?.map((category: any) => (
-                  <div>
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
-                      <a
-                        href={"/subCategories/" + category.slug.current}
-                        key={Math.random()}
-                      >
-                        {category.title}
-                      </a>
-                    </span>
-                    <br></br>
-                  </div>
-                ))}
               </div>
-              <br></br>
-              <hr></hr>
-              {recipe?.note ? (
-                <div>
-                  <h2 className="pb-4">Chef's Note: </h2>
-                  <p className="font-thin">{recipe.note}</p>
+              <div
+                className="p-5"
+                style={{ maxHeight: "650px", overflowY: "auto" }}
+              >
+                <h1>{recipe?.title}</h1>
+                {recipe?.description ? (
+                  <div>
+                    <h2 className="pb-2 pt-2">Description:</h2>
+
+                    <BlockContent blocks={recipe?.description}></BlockContent>
+                  </div>
+                ) : null}
+
+                <h2 className="pb-2 pt-2">Ingredients:</h2>
+                {recipe?.ingredients ? (
+                  <BlockContent blocks={recipe?.ingredients}></BlockContent>
+                ) : null}
+                <h2 className="pt-2 pb-2">Directions:</h2>
+                {recipe?.body ? (
+                  <BlockContent blocks={recipe?.body}></BlockContent>
+                ) : null}
+                <br></br>
+                <hr></hr>
+                {recipe?.embeddedLink ? (
+                  <p>{recipe.embeddedLink} test</p>
+                ) : null}
+                <div className="grid grid-cols-2 mt-4">
+                  {" "}
+                  <h2 className="pb-2">Categories: </h2>
+                  <h2 className="pb-4">Sub Categories: </h2>
+                  {recipe?.categories?.map((category: any) => (
+                    <div>
+                      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
+                        <a
+                          href={"/categories/" + category.slug.current}
+                          key={Math.random()}
+                        >
+                          {category.title}
+                        </a>
+                      </span>
+
+                      <br></br>
+                    </div>
+                  ))}
+                  {recipe?.subCategory?.map((category: any) => (
+                    <div>
+                      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 mr-2 mb-2">
+                        <a
+                          href={"/subCategories/" + category.slug.current}
+                          key={Math.random()}
+                        >
+                          {category.title}
+                        </a>
+                      </span>
+                      <br></br>
+                    </div>
+                  ))}
                 </div>
-              ) : null}
+                <br></br>
+                <hr></hr>
+                {recipe?.note ? (
+                  <div>
+                    <h2 className="pb-4">Chef's Note: </h2>
+                    <p className="font-thin">{recipe.note}</p>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-                       ) : null}
-
+        </main>
+      ) : null}
     </>
   );
 };

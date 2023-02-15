@@ -2,6 +2,7 @@ import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { recipesData } from "../../queries/recipes";
 import { SanityImage } from "../../components/image/SanityImage";
+import { RecipeCard } from "../../components/recipeCard";
 
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -27,25 +28,15 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div
-          className={
-            "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
-          }
-        >
+        <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 text-center">
           <h1>Testing Recipe Collection</h1>
 
           <div className="flex m-10">
-            {recipes?.map((recipe: any, key: number) => (
-              <div className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
-                <SanityImage
-                  image={recipe?.mainImage}
-                  alt={recipe.title}
-                  width={200}
-                />
-                <a href={"/recipes/" + recipe.slug.current}>{recipe.title}</a>
-                <br></br>
-              </div>
-            ))}
+            <div className="grid gap-10 grid-cols-4 grid-rows-4">
+              {recipes?.map((recipe: any) => {
+                return <RecipeCard recipe={recipe} post={recipe} />;
+              })}
+            </div>
           </div>
         </div>
       </main>
