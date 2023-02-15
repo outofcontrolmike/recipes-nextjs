@@ -4,6 +4,8 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { SanityImage } from "../../components/image/SanityImage";
 import { subCategoryData } from "../../queries/subCategories";
 import { subCategoryFilteredData } from "../../queries/recipes";
+import { RecipeCard } from "../../components/recipeCard";
+
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await subCategoryData(context);
@@ -28,8 +30,6 @@ export const SubCategory = (
 ) => {
   let subCategory = data?.page?.[0];
 
-  console.log("sub Cat", subCategory);
-  console.log("recipes", data?.recipes);
   return (
     <>
       <Head>
@@ -38,11 +38,12 @@ export const SubCategory = (
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        {subCategory ? (
+
+      {subCategory ? (
+        <main>
           <div
             className={
-              "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+              "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
             }
           >
             <SanityImage
@@ -50,15 +51,22 @@ export const SubCategory = (
               alt={subCategory?.alt}
               width={400}
             />
-            <p>{subCategory?.title}</p>
-            <h1>Category Description</h1>
-            <h2>{subCategory?.description}</h2>
-            <hr></hr>
-            <p>Related Recipes:</p>
-            {data?.recipes[0].title}
+            <h1>{subCategory?.title}</h1>
+            <p className="text-gray-700 text-lg">{subCategory?.description}</p>
+            {/* Testing */}
+            {data?.recipes ? (
+              <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
+                {/* <p>Recipes Based on {categoryObject?.title}</p> */}
+                <div className="grid gap-10 grid-cols-4">
+                  {data?.recipes?.map((recipe: any) => {
+                    return <RecipeCard recipe={recipe} post={recipe} />;
+                  })}
+                </div>
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </main>
+        </main>
+      ) : null}
     </>
   );
 };

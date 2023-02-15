@@ -35,32 +35,36 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div
-          className={
-            "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
-          }
-        >
-          <SanityImage
-            image={categoryObject?.image}
-            alt={categoryObject?.alt}
-            width={400}
-          />
-          <h1>{categoryObject?.title}</h1>
-          <p className="text-gray-700 text-lg">{categoryObject?.description}</p>
-          {/* Testing */}
-          {data?.relatedRecipes ? (
-            <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
-              {/* <p>Recipes Based on {categoryObject?.title}</p> */}
-              <div className="grid gap-10 grid-cols-4">
-                {data?.relatedRecipes?.map((recipe: any) => {
-                  return <RecipeCard recipe={recipe} post={recipe} />;
-                })}
+      {categoryObject ? (
+        <main>
+          <div
+            className={
+              "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
+            }
+          >
+            <SanityImage
+              image={categoryObject?.image}
+              alt={categoryObject?.alt}
+              width={400}
+            />
+            <h1>{categoryObject?.title}</h1>
+            <p className="text-gray-700 text-lg">
+              {categoryObject?.description}
+            </p>
+            {/* Testing */}
+            {data?.relatedRecipes ? (
+              <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
+                {/* <p>Recipes Based on {categoryObject?.title}</p> */}
+                <div className="grid gap-10 grid-cols-4">
+                  {data?.relatedRecipes?.map((recipe: any) => {
+                    return <RecipeCard recipe={recipe} post={recipe} />;
+                  })}
+                </div>
               </div>
-            </div>
-          ) : null}
-        </div>
-      </main>
+            ) : null}
+          </div>
+        </main>
+      ) : null}
     </>
   );
 };

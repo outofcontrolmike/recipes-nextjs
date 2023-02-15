@@ -11,7 +11,13 @@ interface IChefsData {
 }
 //collection
 export const chefsData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'author']`;
+	const query = groq`*[_type == 'author']{
+        image,
+        title,
+        name,
+        slug,
+        microBiography,
+    }`;
 
 	const chefsData: IChefsData = await sanityStaticProps({ context, query });
 	return chefsData;
@@ -29,7 +35,12 @@ interface IChefData {
         const query = groq`*[_type == 'author' && slug.current == '${slug}'][0]{
             ...,
             'slug': slug.current,
-            featuredRecipes[]->
+            featuredRecipes[]->{
+                slug,
+                mainImage,
+                title,
+                description,
+            }
         }`;
     
         const chefData: IChefData = await sanityStaticProps({ context, query });

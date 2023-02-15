@@ -10,7 +10,13 @@ interface IcategoriesData {
 }
 
 export const categoriesData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const query = groq`*[_type == 'category']`;
+	const query = groq`*[_type == 'category']{
+		slug,
+		image,
+		alt,
+		title,
+		description,
+	}`;
 
 	const categoriesData: IcategoriesData = await sanityStaticProps ({ context, query });
 	return categoriesData;
@@ -30,23 +36,25 @@ interface ICategoryData {
 export const categoryData = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
 	const slug = context?.params?.slug;
 	const query = groq`*[_type == 'category' && slug.current == '${slug}']{
-		...,
+		
 		'slug': slug.current,
+		title,
+		image,
 	}`;
 
 	const categoryData: ICategoryData = await sanityStaticProps({context, query});
 	return categoryData;
 }
 
-//Category Based Recipe Fetch
-export const fetchByCategory = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
-	const slug = context?.params?.slug;
-	const query = groq`*[type == 'recipe' && category == slug.current == '${slug}']{
-		...,
-		'slug': slug.current,
-	}`;
+// //Category Based Recipe Fetch
+// export const fetchByCategory = async (context: GetStaticPropsContext<ParsedUrlQuery>) => {
+// 	const slug = context?.params?.slug;
+// 	const query = groq`*[type == 'recipe' && category == slug.current == '${slug}']{
+// 		...,
+// 		'slug': slug.current,
+// 	}`;
 
 	
-	const filterRecipeData: ICategoryData = await sanityStaticProps({context, query});
-	return filterRecipeData;
-}
+// 	const filterRecipeData: ICategoryData = await sanityStaticProps({context, query});
+// 	return filterRecipeData;
+// }

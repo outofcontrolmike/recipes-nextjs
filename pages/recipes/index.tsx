@@ -16,8 +16,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("data", data);
-
   let recipes = data.page;
   return (
     <>
@@ -27,19 +25,21 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 text-center">
-          <h1>Testing Recipe Collection</h1>
+      {recipes ? (
+        <main>
+          <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 text-center">
+            <h1>Testing Recipe Collection</h1>
 
-          <div className="flex m-10">
-            <div className="grid gap-10 grid-cols-4 grid-rows-4">
-              {recipes?.map((recipe: any) => {
-                return <RecipeCard recipe={recipe} post={recipe} />;
-              })}
+            <div className="flex m-10">
+              <div className="grid gap-10 grid-cols-4 grid-rows-4">
+                {recipes?.map((recipe: any) => {
+                  return <RecipeCard recipe={recipe} post={recipe} />;
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      ) : null}
     </>
   );
 };
