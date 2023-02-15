@@ -2,11 +2,9 @@ import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { categoryData } from "../../queries/categories";
 import { categoryFilteredData } from "../../queries/recipes";
-
-import styles from "../../styles/Home.module.css";
-
 import { SanityImage } from "../../components/image/SanityImage";
 
+import { RecipeCard } from "../../components/recipeCard";
 // getStaticProps
 export const getStaticProps: GetStaticProps = async (context) => {
   const pageProps = await categoryData(context);
@@ -28,7 +26,6 @@ export async function getStaticPaths() {
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
   let categoryObject = data?.page?.[0];
-  console.log("Shiiit", data);
 
   return (
     <>
@@ -41,7 +38,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
       <main>
         <div
           className={
-            "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
           }
         >
           <SanityImage
@@ -49,17 +46,18 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             alt={categoryObject?.alt}
             width={400}
           />
-          <p>{categoryObject?.title}</p>
-          <h1>Category Description</h1>
+          <h1>{categoryObject?.title}</h1>
           <h2>{categoryObject?.description}</h2>
-          <hr></hr>
-          <p>Related Recipes:</p>
+
+          {/* Testing */}
           {data?.relatedRecipes ? (
-            <div>
-              <h1>Recipes Based on {categoryObject?.title}</h1>
-              {data?.relatedRecipes?.map((recipe: any) => {
-                return <h1>{recipe?.title}</h1>;
-              })}
+            <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
+              {/* <p>Recipes Based on {categoryObject?.title}</p> */}
+              <div className="grid gap-10 grid-cols-4">
+                {data?.relatedRecipes?.map((recipe: any) => {
+                  return <RecipeCard recipe={recipe} post={recipe} />;
+                })}
+              </div>
             </div>
           ) : null}
         </div>
