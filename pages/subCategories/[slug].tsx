@@ -43,7 +43,7 @@ export const SubCategory = (
         <main>
           <div
             className={
-              "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
+              "bg-white container mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
             }
           >
             <SanityImage
@@ -55,7 +55,7 @@ export const SubCategory = (
             <p className="text-gray-700 text-lg">{subCategory?.description}</p>
             {/* Testing */}
             {data?.recipes ? (
-              <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
+              <div className="container bg-white mx-auto mt-4 text-center">
                 {/* <p>Recipes Based on {categoryObject?.title}</p> */}
                 <div className="grid gap-10 grid-cols-4">
                   {data?.recipes?.map((recipe: any) => {

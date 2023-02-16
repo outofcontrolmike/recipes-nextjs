@@ -53,7 +53,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             </p>
             {/* Testing */}
             {data?.relatedRecipes ? (
-              <div className="container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center">
+              <div className=" bg-white mt-4 text-center">
                 {/* <p>Recipes Based on {categoryObject?.title}</p> */}
                 <div className="grid gap-10 grid-cols-4">
                   {data?.relatedRecipes?.map((recipe: any) => {

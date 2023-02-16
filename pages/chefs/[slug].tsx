@@ -38,9 +38,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {chefObject ? (
-        <main className="pt-10">
+        <main className="">
           <div
-            className="container columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
+            className=" container columns-2 mx-auto p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
             id="pageCard"
           >
             <div style={{ textAlign: "-webkit-center" }}>

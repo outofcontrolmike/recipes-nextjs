@@ -52,6 +52,7 @@ interface IRecipeData {
             slug,
             title,
             alt,
+            description,
         }`;
 
         const recipesData: IRecipeData = await sanityStaticProps({context, query});
@@ -66,6 +67,7 @@ interface IRecipeData {
             slug,
             title,
             alt,
+            description,
         }`;
 
         const subCategoryRecipes: IRecipeData = await sanityStaticProps({context, query});

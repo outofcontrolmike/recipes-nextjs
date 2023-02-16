@@ -16,6 +16,8 @@ interface Props {
 export const RecipeCard = (props: Props) => {
   const recipe = props?.recipe;
 
+  console.log("stuff....", props);
+
   return (
     <div className="flex justify-center">
       <div className="rounded-lg shadow-lg bg-white max-w-sm">

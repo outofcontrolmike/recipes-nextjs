@@ -28,11 +28,11 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <main>
           <div
             className={
-              "container columns-4 bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none text-center"
+              " columns-4 bg-white mx-auto m-10 p-10 rounded overflow-hidden  mt-4 flex-none text-center"
             }
           >
             {chefs.map((chef: any, key: number) => (
-              <div className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none bg-white">
+              <div className="max-w-sm rounded overflow-hidden shadow-xl mt-4 flex-none">
                 <SanityImage
                   className="w-full"
                   image={chef?.image}
