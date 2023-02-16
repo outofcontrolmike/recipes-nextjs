@@ -16,7 +16,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("data in Categories collection", data);
 
   let subCategories = data.page;
   return (
@@ -31,15 +30,16 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
 
         {/* Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
+      {subCategories ? (
+
       <main>
-        {subCategories ? (
           <div
             className={
               "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
@@ -60,8 +60,9 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
               </div>
             ))}
           </div>
-        ) : null}
+    
       </main>
+          ) : null}
     </>
   );
 };

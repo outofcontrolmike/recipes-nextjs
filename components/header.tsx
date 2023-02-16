@@ -25,6 +25,18 @@ export default function Header() {
           >
             Recipes
           </a>
+            <a
+            href="/categories"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
+          >
+            Categories
+          </a>
+            <a
+            href="/subCategories"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
+          >
+            Sub Categories
+          </a>
           <a
             href="/chefs"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-6"
