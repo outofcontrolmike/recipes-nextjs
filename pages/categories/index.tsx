@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { categoriesData } from "../../queries/categories";
-import { SanityImage } from "../../components/image/SanityImage";
+import { CategoryCard } from "../../components/categoryCard";
 
 //get static props
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -15,9 +15,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
-  let categories = data.page;
-
-  console.log("categores map", categories);
+  let categories = data?.page;
 
   return (
     <>
@@ -31,25 +29,14 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div>
-          {" "}
+        <div className=  "container bg-white mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none">
+          
           <h1>This will be categories collection</h1>
-          {categories?.map((category: any) => (
-            <div
-              className={
-                "container bg-white columns-2 mx-auto m-10 p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
-              }
-            >
-              <SanityImage
-                image={category?.image}
-                alt={category?.title}
-                width={200}
-              />
-              <a href={"/categories/" + category.slug.current}>
-                {category.title}
-              </a>
-            </div>
-          ))}
+      <div className="grid gap-10 grid-cols-4">
+                 {categories?.map((category: any) => {
+                   return <CategoryCard category={category} post={category} />;
+                 })}
+               </div>
         </div>
       </main>
     </>
