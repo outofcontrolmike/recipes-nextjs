@@ -1,9 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Baloo_Da_2, Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
 const customLoader = ({ src }: { src: any }) => {
   return src;
 };
