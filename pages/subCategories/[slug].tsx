@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { SanityImage } from "../../components/image/SanityImage";
 import { subCategoryData } from "../../queries/subCategories";
@@ -20,10 +19,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export async function getStaticPaths() {
   return {
-    paths: ["/subCategories/[slug]"],
+    paths: ["/subCategories/[slug][0]"],
     fallback: true,
   };
 }
+
 
 export const SubCategory = (
   data: InferGetStaticPropsType<typeof getStaticProps>

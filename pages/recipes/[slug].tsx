@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export async function getStaticPaths() {
   return {
-    paths: ["/recipes/[slug]"],
+    paths: ["/recipes/[slug][0]"],
     fallback: true,
   };
 }

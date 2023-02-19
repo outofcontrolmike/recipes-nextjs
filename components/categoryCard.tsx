@@ -9,6 +9,7 @@ interface Props {
     description: any;
     title: any;
     post: any;
+    _type: string;
   }
   post: ICategory;
 }
@@ -16,6 +17,7 @@ interface Props {
 export const CategoryCard = (props: Props) => {
   const category = props?.category;
 
+  let type = ""
   return (
     <div className="flex justify-center">
       <div className="rounded-lg shadow-lg bg-white max-w-sm">
@@ -41,7 +43,9 @@ export const CategoryCard = (props: Props) => {
           {/* <p className="text-gray-700 text-base mb-4">
             <BlockContent blocks={category?.description}></BlockContent>
           </p> */}
-          <a href={"/subCategories/" + category?.slug?.current}>
+               {category?._type === "subCategory" ? type = "subCategories" : type = "categories"}
+               <a href={type + "/" + category?.slug?.current}>
+
             <button
               type="button"
               className=" inline-block px-6 py-2.5 text-white-400 bg-teal-400 font-thick text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-500 hover:text-white-100 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out"

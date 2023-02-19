@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { chefData } from "../../queries/chefs";
 
@@ -19,7 +18,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export async function getStaticPaths() {
   return {
-    paths: ["/chefs/[slug]"],
+    paths: ["/chefs/[slug][0]"],
     fallback: true,
   };
 }
@@ -43,7 +42,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
             className=" container columns-2 mx-auto p-10 rounded overflow-hidden shadow-xl mt-4 flex-none"
             id="pageCard"
           >
-            <div style={{ textAlign: "-webkit-center" }}>
+            <div>
               <SanityImage
                 image={chefObject?.image}
                 alt={chefObject?.name + "'s portfolio picture."}
@@ -75,7 +74,7 @@ export const Page = (data: InferGetStaticPropsType<typeof getStaticProps>) => {
                 Contributor Since:{" "}
               </span>{" "}
               <span className="font-thick text-teal-500">
-                {chefObject?._createdAt.slice(0, 10)}
+                {chefObject?._createdAt?.slice(0, 10)}
               </span>
             </div>
             <div>
