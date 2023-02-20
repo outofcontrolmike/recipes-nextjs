@@ -18,6 +18,8 @@ export const CategoryCard = (props: Props) => {
   const category = props?.category;
 
   let type = ""
+  category?._type === "subCategory" ? type = "subCategories" : type = "categories"
+
   return (
     <div className="flex justify-center">
       <div className="rounded-lg shadow-lg bg-white max-w-sm">
@@ -43,8 +45,8 @@ export const CategoryCard = (props: Props) => {
           {/* <p className="text-gray-700 text-base mb-4">
             <BlockContent blocks={category?.description}></BlockContent>
           </p> */}
-               {category?._type === "subCategory" ? type = "subCategories" : type = "categories"}
                <a href={type + "/" + category?.slug?.current}>
+                <br></br>
 
             <button
               type="button"
