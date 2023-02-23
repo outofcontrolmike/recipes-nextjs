@@ -109,7 +109,7 @@ declare module '@sanity/block-content-to-react' {
 		 */
 		imageOptions?: any;
 		/** The ID of your Sanity project. */
-		projectId?: string;
+		projectId?: "clj5orum";
 		/** Name of the Sanity dataset containing the document that is being rendered. */
 		dataset?: string;
 	}
