@@ -109,9 +109,9 @@ declare module '@sanity/block-content-to-react' {
 		 */
 		imageOptions?: any;
 		/** The ID of your Sanity project. */
-		projectId?: "clj5orum";
+		projectId?: 'clj5orum';
 		/** Name of the Sanity dataset containing the document that is being rendered. */
-		dataset?: string;
+		dataset?: 'production';
 	}
 
 	/** React component for transforming Sanity block content to React components */
